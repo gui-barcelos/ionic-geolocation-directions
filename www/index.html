@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link rel="manifest" href="manifest.json">
+
+    <!-- un-comment this code to enable service worker
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(() => console.log('service worker installed'))
+          .catch(err => console.log('Error', err));
+      }
+    </script>-->
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
+    <script src="lib/lodash/dist/lodash.min.js"></script>
+    <script src="lib/angular-simple-logger/dist/angular-simple-logger.min.js"></script>
+    <script src="lib/angular-google-maps/dist/angular-google-maps.min.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/app-ctrl.js"></script>
+  </head>
+  <body ng-app="app">
+
+    <ion-pane ng-controller="AppCtrl as vm">
+      <ion-header-bar class="bar-stable">
+        <h1 class="title">Geolocation With Directions App</h1>
+      </ion-header-bar>
+      <ion-content>
+        <ui-gmap-google-map draggable="true" center='map.center' zoom='map.zoom'>
+          <ui-gmap-marker click="vm.goToDirection(vm.marker)" options="vm.marker.options" idKey="vm.marker.idKey" coords="vm.marker">
+          </ui-gmap-marker>
+        </ui-gmap-google-map>
+      </ion-content>
+    </ion-pane>
+  </body>
+</html>
